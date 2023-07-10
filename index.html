@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Obavljanje računarskih operacija</title>
+</head>
+<body>
+  <h2>Kalkulator</h2>
+  <input type="text" id="firstNumber" placeholder="Prvi broj">
+  <input type="text" id="operator" placeholder="Operacija (+, -, *, /)">
+  <input type="text" id="secondNumber" placeholder="Drugi broj">
+  <button onclick="calculate()">Izračunaj</button>
+  <p id="result"></p>
+
+  <script>
+    function calculate() {
+      var firstNumber = parseFloat(document.getElementById("firstNumber").value);
+      var operator = document.getElementById("operator").value;
+      var secondNumber = parseFloat(document.getElementById("secondNumber").value);
+      var resultElement = document.getElementById("result");
+
+      var result;
+
+      if (isNaN(firstNumber) || isNaN(secondNumber)) {
+        result = "Unesite ispravne brojeve.";
+      } else {
+        switch (operator) {
+          case "+":
+            result = firstNumber + secondNumber;
+            break;
+          case "-":
+            result = firstNumber - secondNumber;
+            break;
+          case "*":
+            result = firstNumber * secondNumber;
+            break;
+          case "/":
+            if (secondNumber === 0) {
+              result = "Greška: Deljenje s nulom nije dozvoljeno.";
+            } else {
+              result = firstNumber / secondNumber;
+            }
+            break;
+          default:
+            result = "Nepoznata operacija.";
+        }
+      }
+
+      resultElement.textContent = "Rezultat: " + result;
+    }
+  </script>
+</body>
+</html>
